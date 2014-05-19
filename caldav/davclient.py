@@ -208,7 +208,7 @@ class DAVClient:
 
         try:
             logging.debug("sending request - method=%s, url=%s, headers=%s\nbody:\n%s" % (method, url, combined_headers, body))
-            self.handle.request(method, url, body, combined_headers)
+            self.handle.request(method, url.path, body, combined_headers)
             response = DAVResponse(self.handle.getresponse())
         except httplib.BadStatusLine:
             # Try to reconnect
@@ -217,7 +217,7 @@ class DAVClient:
 
             ## TODO: we're missing test code on this.  (will need to
             ## mock up a server to test this)
-            self.handle.request(method, url, body, combined_headers)
+            self.handle.request(method, url.path, body, combined_headers)
             response = DAVResponse(self.handle.getresponse())
 
         # this is an error condition the application wants to know
