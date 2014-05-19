@@ -63,7 +63,7 @@ class DAVClient:
 
         # Prepare proxy info
         if proxy is not None:
-            # TODO: this will break if using basic auth and embedding 
+            # TODO: this will break if using basic auth and embedding
             # username:password in the proxy URL
             self.proxy = proxy.split(":")
             if len(self.proxy) == 1:
@@ -81,7 +81,7 @@ class DAVClient:
         if username is not None:
             hash = (("%s:%s" % (username, password))
                     .encode('base64')[:-1])
-            self.headers['authorization'] = "Basic %s" % hash
+            self.headers['Authorization'] = "Basic %s" % hash
 
         # Connection proxy
         if self.proxy is not None:
